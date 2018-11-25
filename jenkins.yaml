@@ -1,0 +1,45 @@
+jenkins:
+  securityRealm:
+    ldap:
+      configurations:
+        - server: ldap.yourcompany.com
+          rootDN: dc=acme,dc=fr
+          managerPasswordSecret: ${LDAP_PASSWORD}
+      cache:
+        size: 100
+        ttl: 10
+      userIdStrategy: CaseSensitive
+      groupIdStrategy: CaseSensitive
+
+tool:
+  git:
+    installations:
+      - name: git
+        home: /usr/local/bin/git
+
+unclassified:
+  githubpluginconfig:
+    configs:
+    - name: "Public GitHub"
+      apiUrl: "https://api.github.com"
+      credentialsId: "secret-text"
+      manageHooks: true
+
+  mailer:
+    adminAddress: admin@acme.org
+    replyToAddress: do-not-reply@acme.org
+    # Note that this does not work right now
+    #smtpHost: smtp.acme.org
+    smtpPort: 4441
+    charset: UTF-8
+    useSsl: false
+
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+              - string:
+              scope: GLOBAL
+              id: "secret-text"
+              secret: 0877d9eb9ac5bd1a34790473250b7ff98574faae
+              description: "Secret Text"
