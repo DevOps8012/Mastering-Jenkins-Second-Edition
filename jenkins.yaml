@@ -1,43 +1,36 @@
-plugins:
-  sites:
-  - id: "default"
-    url: "https://updates.jenkins.io/update-center.json"
 jenkins:
-  agentProtocols:
-  - "JNLP4-connect"
-  - "Ping"
-  authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
-  crumbIssuer:
-    standard:
-      excludeClientIPFromCrumb: false
-  disableRememberMe: false
-  mode: NORMAL
-  numExecutors: 2
-  primaryView:
-    all:
-      name: "all"
-  quietPeriod: 5
-  scmCheckoutRetryCount: 0
   securityRealm:
-    local:
-      allowsSignup: false
-      enableCaptcha: false
-      users:
-      - id: "admin"
-  slaveAgentPort: 50000
-  views:
-  - all:
-      name: "all"
+    ldap:
+      configurations:
+        - server: ldap.yourcompany.com
+          rootDN: dc=acme,dc=fr
+          managerPasswordSecret: ${LDAP_PASSWORD}
+      cache:
+        size: 100
+        ttl: 10
+      userIdStrategy: CaseSensitive
+      groupIdStrategy: CaseSensitive
+
 tool:
   git:
     installations:
-    - home: "git"
-      name: "Default"
-  jdk:
-    defaultProperties:
-    - installSource:
-        installers:
-        - jdkInstaller:
-            acceptLicense: false
+      - name: git
+        home: /usr/local/bin/git
+
+unclassified:
+  githubpluginconfig:
+    configs:
+    - name: "Public GitHub"
+      apiUrl: "https://api.github.com"
+      credentialsId: "secret-text"
+      manageHooks: true
+
+credentials:
+  system:
+    domainCredentials:
+       - credentials:
+          - string:
+              scope: GLOBAL
+              id: "secret-text"
+              secret: 550eadfd256f894eb85e3e6f60fffa543003496e
+              description: "Secret Text"
