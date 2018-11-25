@@ -38,8 +38,8 @@ credentials:
   system:
     domainCredentials:
       - credentials:
-              - string:
-              scope: GLOBAL
-              id: "secret-text"
-              secret: 0877d9eb9ac5bd1a34790473250b7ff98574faae
-              description: "Secret Text"
+          - string:
+          scope: GLOBAL
+          id: "secret-text"
+          secret: 0877d9eb9ac5bd1a34790473250b7ff98574faae
+          description: "Secret Text"
