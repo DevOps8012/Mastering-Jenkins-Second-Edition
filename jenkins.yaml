@@ -1,16 +1,3 @@
-jenkins:
-  securityRealm:
-    ldap:
-      configurations:
-        - server: ldap.yourcompany.com
-          rootDN: dc=acme,dc=fr
-          managerPasswordSecret: ${LDAP_PASSWORD}
-      cache:
-        size: 100
-        ttl: 10
-      userIdStrategy: CaseSensitive
-      groupIdStrategy: CaseSensitive
-
 tool:
   git:
     installations:
